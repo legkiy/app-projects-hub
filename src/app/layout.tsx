@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import StoreProvider from '@/providers/StoreProvider';
+import { Menu } from '@/widgets';
+import MainProvider from '@/providers/MainProvider';
+import { getAllPages } from '@/features';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -15,10 +18,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pagesList = getAllPages();
+
   return (
     <html lang="en">
       <body className={inter.className}>
-        <StoreProvider>{children}</StoreProvider>
+        <StoreProvider>
+          <MainProvider>
+            <Menu pagesList={pagesList} />
+            {children}
+          </MainProvider>
+        </StoreProvider>
       </body>
     </html>
   );

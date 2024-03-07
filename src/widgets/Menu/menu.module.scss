@@ -1,0 +1,74 @@
+$menuHeight: 50px;
+$transitionTime: 0.3s;
+$backBlur: blur(1px);
+$openBackColor: rgba(255, 255, 255, 0.2);
+
+.menu {
+  background-color: white;
+  width: $menuHeight;
+  height: $menuHeight;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  border-radius: $menuHeight/4;
+  transition: all $transitionTime ease-in-out;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.expanded-menu {
+  width: 500px;
+  height: 500px;
+  border-radius: 50px;
+  margin-top: 50px;
+  cursor: default;
+}
+
+.menu-line {
+  height: $menuHeight;
+  // padding: 10px 0;
+}
+
+.menu-back {
+  &__open {
+    animation: fadeIn $transitionTime linear 1 forwards;
+    width: 100vw;
+    height: 100vh;
+    cursor: pointer;
+  }
+
+  &__close {
+    background-color: rgba(255, 255, 255, 0);
+    animation: fadeOut $transitionTime linear 1 forwards;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    background-color: rgba(255, 255, 255, 0);
+  }
+  100% {
+    background-color: $openBackColor;
+    backdrop-filter: $backBlur;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    background-color: $openBackColor;
+    backdrop-filter: $backBlur;
+    width: 100vw;
+    height: 100vh;
+  }
+  90% {
+    background-color: rgba(255, 255, 255, 0);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0);
+    width: auto;
+    height: auto;
+  }
+}
