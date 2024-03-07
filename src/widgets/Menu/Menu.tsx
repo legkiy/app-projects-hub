@@ -1,12 +1,15 @@
 'use client';
-import { FC, MouseEvent, useState } from 'react';
+import { FC, MouseEvent, useEffect, useState } from 'react';
 import style from './menu.module.scss';
 import classNames from 'classnames';
+import { MenuItem } from '@UI';
+import { usePathname } from 'next/navigation';
 
 interface Props {
   pagesList: string[];
 }
 const Menu: FC<Props> = ({ pagesList }) => {
+  const pathname = usePathname();
   const [openMenu, setOpenMenu] = useState(false);
   const [init, setInit] = useState(false);
 
@@ -17,6 +20,14 @@ const Menu: FC<Props> = ({ pagesList }) => {
     setOpenMenu(true);
     setInit(true);
   };
+
+  useEffect(() => {
+    if (openMenu) {
+      setOpenMenu(false);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
+
   return (
     <div className={style['menu-line']}>
       <div
@@ -32,7 +43,12 @@ const Menu: FC<Props> = ({ pagesList }) => {
           })}
           onClick={(event) => handaleOnOpenMenu(event)}
         >
-          {openMenu && pagesList.map((page) => <div key={page}>{page}</div>)}
+          {openMenu &&
+            ['', ...pagesList].map((page) => (
+              <MenuItem key={page} href={`/${page}`}>
+                {page}
+              </MenuItem>
+            ))}
         </div>
       </div>
     </div>
