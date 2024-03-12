@@ -15,13 +15,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params: { locale },
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
   const pagesList = getAllPages();
 
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={inter.className}>
         <StoreProvider>
           <MainProvider>
