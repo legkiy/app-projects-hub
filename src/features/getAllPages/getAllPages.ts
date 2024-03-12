@@ -3,7 +3,7 @@ import path from 'path';
 
 // Функция для получения списка файлов page.tsx в папке src/app
 function getPageFiles() {
-  const folderPath = path.join(process.cwd(), 'src', 'app');
+  const folderPath = path.join(process.cwd(), 'src', 'app', '[locale]');
 
   // Читаем содержимое папки
   const files = fs.readdirSync(folderPath);

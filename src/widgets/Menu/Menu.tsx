@@ -4,11 +4,13 @@ import style from './menu.module.scss';
 import classNames from 'classnames';
 import { MenuItem } from '@UI';
 import { usePathname } from 'next/navigation';
+import LocaleSwither from '@/features/LocaleSwither/LocaleSwither';
 
 interface Props {
   pagesList: string[];
+  locale: string;
 }
-const Menu: FC<Props> = ({ pagesList }) => {
+const Menu: FC<Props> = ({ pagesList, locale }) => {
   const pathname = usePathname();
   const [openMenu, setOpenMenu] = useState(false);
   const [init, setInit] = useState(false);
@@ -25,7 +27,7 @@ const Menu: FC<Props> = ({ pagesList }) => {
     if (openMenu) {
       setOpenMenu(false);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   return (
@@ -45,7 +47,7 @@ const Menu: FC<Props> = ({ pagesList }) => {
         >
           {openMenu &&
             ['', ...pagesList].map((page) => (
-              <MenuItem key={page} href={`/${page}`}>
+              <MenuItem key={page} href={`/${locale}/${page}`}>
                 {page}
               </MenuItem>
             ))}

@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <StoreProvider>
           <MainProvider>
-            <Menu pagesList={pagesList} />
+            <Menu pagesList={pagesList} locale={locale}/>
             {children}
           </MainProvider>
         </StoreProvider>
