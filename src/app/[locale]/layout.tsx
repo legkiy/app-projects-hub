@@ -1,12 +1,14 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
+import localFont from 'next/font/local';
+import './globals.scss';
 import StoreProvider from '@/providers/StoreProvider';
 import { Menu } from '@/widgets';
 import MainProvider from '@/providers/MainProvider';
 import { getAllPages } from '@/features';
 
-const inter = Inter({ subsets: ['latin'] });
+const font = localFont({
+  src: '../../style/fonts/Open Sans/OpenSans-VariableFont_wdth,wght.ttf',
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -24,10 +26,10 @@ export default function RootLayout({
 
   return (
     <html lang={locale}>
-      <body className={inter.className}>
+      <body className={font.className}>
         <StoreProvider>
           <MainProvider>
-            <Menu pagesList={pagesList} locale={locale}/>
+            <Menu pagesList={pagesList} locale={locale} />
             {children}
           </MainProvider>
         </StoreProvider>
