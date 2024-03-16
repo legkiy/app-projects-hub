@@ -28,10 +28,8 @@ export default function RootLayout({
       <body className={font.className}>
         <StoreProvider>
           <ThemeProvider>
-            <MainProvider>
-              <Menu pagesList={pagesList} locale={locale} />
-              {children}
-            </MainProvider>
+            <Menu pagesList={pagesList} locale={locale} />
+            <MainProvider>{children}</MainProvider>
           </ThemeProvider>
         </StoreProvider>
       </body>

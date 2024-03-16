@@ -1,6 +1,10 @@
+@use 'src/style/colors';
+@import 'src/style/mixins.scss';
+
 .menu-item {
   width: auto;
   height: 100%;
   border: 1px solid black;
   border-radius: 25px;
+  @include theme-switch(color, colors.$white, colors.$black);
 }
