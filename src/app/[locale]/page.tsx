@@ -1,4 +1,5 @@
 import { LocaleSwither } from '@/features';
+import ThemeToggle from '@/features/ThemeToggle/ThemeToggle';
 import { Button, StoreDataDisplay } from '@UI';
 import { useTranslations } from 'next-intl';
 
@@ -8,8 +9,9 @@ export default function Home() {
     <>
       <LocaleSwither />
       <h1>{t('hello')}</h1>
-      <StoreDataDisplay storePath="counter.value" />
+      <ThemeToggle />
       <Button>inc</Button>
+      <StoreDataDisplay storePath="counter.value" />
     </>
   );
 }

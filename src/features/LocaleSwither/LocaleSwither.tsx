@@ -4,6 +4,9 @@ import { useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, FC, useTransition } from 'react';
 
+/**
+ * Нужно сделать компонент переключателя и использовать сдесь его
+ */
 const LocaleSwither: FC = () => {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();

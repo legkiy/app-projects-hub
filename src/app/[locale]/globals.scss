@@ -31,17 +31,7 @@ body {
 }
 
 body {
-  background-color: colors.$black;
-  // @include checkThemeValue(background-color, colors.$white, colors.$black);
-  // @include checkThemeValue(color, colors.$black, colors.$white);
-
-  // background-color: colors.$backgroundColor;
-  /* background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
+  @include theme-switch(background-color, colors.$white, colors.$black);
 }
 
 a {

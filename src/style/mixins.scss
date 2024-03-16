@@ -1,15 +1,7 @@
-@mixin checkThemeValue($property, $lightValue, $darkValue) {
-  @media (prefers-color-scheme: dark) {
-    #{$property}: $darkValue; // Используем значение для темной темы
-  }
-  #{$property}: $lightValue;
-}
+@mixin theme-switch($property, $light-theme, $dark-theme) {
+  #{$property}: $light-theme;
 
-
-@function checkTheme($lightValue, $darkValue) {
-  @if (prefers-color-scheme: dark) {
-    @return $darkValue;
-  } @else {
-    @return $lightValue;
+  [data-theme='dark'] & {
+    #{$property}: $dark-theme;
   }
 }

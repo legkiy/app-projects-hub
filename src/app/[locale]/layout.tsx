@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.scss';
-import StoreProvider from '@/providers/StoreProvider';
 import { Menu } from '@/widgets';
-import MainProvider from '@/providers/MainProvider';
 import { getAllPages } from '@/features';
+import { MainProvider, StoreProvider, ThemeProvider } from '@/providers';
 
 const font = localFont({
   src: '../../style/fonts/Open Sans/OpenSans-VariableFont_wdth,wght.ttf',
@@ -25,13 +24,15 @@ export default function RootLayout({
   const pagesList = getAllPages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body className={font.className}>
         <StoreProvider>
-          <MainProvider>
-            <Menu pagesList={pagesList} locale={locale} />
-            {children}
-          </MainProvider>
+          <ThemeProvider>
+            <MainProvider>
+              <Menu pagesList={pagesList} locale={locale} />
+              {children}
+            </MainProvider>
+          </ThemeProvider>
         </StoreProvider>
       </body>
     </html>
