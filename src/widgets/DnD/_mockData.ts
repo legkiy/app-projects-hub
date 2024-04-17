@@ -1,24 +1,43 @@
-export type MockItemType = { id: string; name: string };
+import { UniqueIdentifier } from '@dnd-kit/core';
 
-export const mockDnDData: MockItemType[] = [
+export type TaskContainersType = {
+  id: string | UniqueIdentifier;
+  title: string;
+  items: TaskType[];
+};
+
+export type TaskType = {
+  id: string | UniqueIdentifier;
+  title: string;
+  description?: string;
+};
+
+export const mockData: TaskContainersType[] = [
   {
-    id: (Date.now() * (Math.random() + 1)).toString(36),
-    name: 'qqqq',
+    id: 'queue',
+    title: 'queue',
+    items: [
+      {
+        id: (Date.now() * (Math.random() + 1)).toString(36),
+        title: 'сохранение DnD',
+        description:'Сделать сохранение DnD списка в LSs'
+      },
+    ],
   },
   {
-    id: (Date.now() + (Math.random() + 1)).toString(36),
-    name: 'wwwww',
+    id: 'inProgress',
+    title: 'inProgress',
+    items: [
+      {
+        id: (Date.now() * (Math.random() + 2)).toString(36),
+        title: 'DnD',
+        description: 'доделать DnD',
+      },
+    ],
   },
   {
-    id: (Date.now() + (Math.random() + 1)).toString(36),
-    name: 'eeee',
-  },
-  {
-    id: (Date.now() + (Math.random() + 1)).toString(36),
-    name: 'rrrr',
-  },
-  {
-    id: (Date.now() + (Math.random() + 1)).toString(36),
-    name: 'tttt',
+    id: 'complete',
+    title: 'complete',
+    items: [],
   },
 ];

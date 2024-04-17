@@ -1,5 +1,6 @@
 import { DnD } from '@/widgets';
 import type { Metadata } from 'next';
+import { NextIntlClientProvider, useMessages } from 'next-intl';
 
 export const metadata: Metadata = {
   title: 'Task Board',
@@ -7,9 +8,12 @@ export const metadata: Metadata = {
 
 interface Props {}
 const TaskBoard = (props: Props) => {
+  const messages = useMessages();
   return (
     <div>
-      <DnD />
+      <NextIntlClientProvider messages={messages}>
+        <DnD />
+      </NextIntlClientProvider>
     </div>
   );
 };

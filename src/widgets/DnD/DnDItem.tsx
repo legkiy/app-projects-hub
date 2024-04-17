@@ -1,15 +1,16 @@
 'use client';
 
 import { FC } from 'react';
-import { mockDnDData, MockItemType } from './_mockData';
+import { TaskType } from './_mockData';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import clsx from 'clsx';
 import style from './dndItem.module.scss';
+import { Card } from '@/share/UI';
 
-interface IDnDItem extends MockItemType {}
+interface IDnDItem extends TaskType {}
 
-const DnDItem: FC<IDnDItem> = ({ id, name }) => {
+const DnDItem: FC<IDnDItem> = ({ id, title, description }) => {
   const {
     attributes,
     setNodeRef,
@@ -23,18 +24,23 @@ const DnDItem: FC<IDnDItem> = ({ id, name }) => {
       type: 'item',
     },
   });
+
   return (
     <div
       {...attributes}
       ref={setNodeRef}
       style={{
+        // cursor: isDragging ? 'grabbing' : 'grab',
         transition,
         transform: CSS.Translate.toString(transform),
       }}
-      className={clsx({ [style['dnd-item']]: isDragging })}
+      className={clsx(style['dnd-item'], { [style['dnd-item-active']]: isDragging })}
+      {...listeners}
     >
-      {name}
-      <button {...listeners}>Drag</button>
+      <Card>
+        <h4>{title}</h4>
+        <p>{description}</p>
+      </Card>
     </div>
   );
 };

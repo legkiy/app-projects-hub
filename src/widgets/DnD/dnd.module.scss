@@ -4,3 +4,18 @@
   // background-color: colors.$lightBlack;
   // padding: 10px;
 }
+
+.dnd-box {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+.dnd-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+}

@@ -1,0 +1,9 @@
+@use '/src/style/vars.scss';
+
+.card {
+  background-color: white;
+  color: black;
+  width: 100%;
+  border-radius: vars.$radiusBase;
+  padding: vars.$paddingBase;
+}
