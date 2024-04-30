@@ -1,4 +1,4 @@
-.dnd-container {
+.dnd-column {
   background-color: gray;
   padding: 20px;
   display: flex;
@@ -8,7 +8,7 @@
   width: 30%;
 }
 
-.container-items {
+.column-items {
   display: flex;
   flex-direction: column;
   align-items: flex-start;

@@ -1,15 +1,13 @@
 @use 'src/style/colors';
 
 .dnd {
-  // background-color: colors.$lightBlack;
-  // padding: 10px;
 }
 
 .dnd-box {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 10px;
+  // gap: 10px;
   justify-content: space-between;
 }
 

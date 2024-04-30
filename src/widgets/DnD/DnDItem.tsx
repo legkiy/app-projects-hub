@@ -34,7 +34,9 @@ const DnDItem: FC<IDnDItem> = ({ id, title, description }) => {
         transition,
         transform: CSS.Translate.toString(transform),
       }}
-      className={clsx(style['dnd-item'], { [style['dnd-item-active']]: isDragging })}
+      className={clsx(style['dnd-item'], {
+        [style['dnd-item-active']]: isDragging,
+      })}
       {...listeners}
     >
       <Card>

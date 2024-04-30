@@ -1,28 +1,28 @@
 'use client';
 
 import { FC, memo } from 'react';
-import { TaskContainersType } from './_mockData';
-import styles from './dndContainer.module.scss';
+import { TaskContainersType } from '../DnD/_mockData';
+import styles from './dndColumn.module.scss';
 import { useDroppable } from '@dnd-kit/core';
 import { SortableContext } from '@dnd-kit/sortable';
-import DnDItem from './DnDItem';
+import DnDItem from '../DnD/DnDItem';
 import { useTranslations } from 'next-intl';
 
-interface IDnDContainer extends TaskContainersType {}
+interface IDnDColumn extends TaskContainersType {}
 
-const DnDContainer: FC<IDnDContainer> = ({ id, title, items }) => {
+const DnDColumn: FC<IDnDColumn> = ({ id, title, items }) => {
   const t = useTranslations('taskBoard_page');
   const { setNodeRef } = useDroppable({
     id,
     data: {
-      type: 'container',
+      type: 'column',
     },
   });
   return (
-    <div ref={setNodeRef} className={styles['dnd-container']}>
+    <div ref={setNodeRef} className={styles['dnd-column']}>
       <h2>{t(title as any)}</h2>
       <SortableContext items={items.map((item) => item.id)}>
-        <div className={styles['container-items']}>
+        <div className={styles['column-items']}>
           {items.map((item) => (
             <DnDItem key={item.id} {...item} />
           ))}
@@ -31,4 +31,4 @@ const DnDContainer: FC<IDnDContainer> = ({ id, title, items }) => {
     </div>
   );
 };
-export default memo(DnDContainer);
+export default memo(DnDColumn);

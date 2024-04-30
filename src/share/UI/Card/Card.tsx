@@ -1,9 +1,13 @@
+import clsx from 'clsx';
 import styles from './card.module.scss';
-import { FC, memo } from 'react';
-interface ICard {
+import { DetailedHTMLProps, FC, HTMLAttributes, memo } from 'react';
+
+interface ICard
+  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   children: React.ReactNode;
 }
-const Card: FC<ICard> = ({ children }) => {
-  return <div className={styles.card}>{children}</div>;
+
+const Card: FC<ICard> = ({ children, ...props }) => {
+  return <div className={clsx(styles.card, props.className)}>{children}</div>;
 };
 export default memo(Card);

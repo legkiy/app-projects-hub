@@ -15,19 +15,18 @@ import {
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
-import {
-  SortableContext,
-  arrayMove,
-  sortableKeyboardCoordinates,
-} from '@dnd-kit/sortable';
-import { mockData, TaskContainersType, TaskType } from './_mockData';
-import DnDContainer from './DnDContainer';
+import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
+import { TaskContainersType, TaskType } from './_mockData';
+import { DnDColumn } from '@/widgets';
 import DnDItem from './DnDItem';
+import { Button } from '@/share/UI';
+import useLocalStorage from '@/share/hooks/useLocalStorage/useLocalStorage';
 
 const DnD: FC = () => {
   const [containers, setContainers] = useState<TaskContainersType[]>([]);
   const [activeId, setActiveId] = useState<UniqueIdentifier>('');
   const [activeItem, setActiveItem] = useState<TaskType>();
+  const { getLSItem } = useLocalStorage();
 
   useEffect(() => {
     setContainers(JSON.parse(localStorage?.getItem('tasks') || '[]'));
@@ -42,9 +41,9 @@ const DnD: FC = () => {
 
   const findActiveContainer = (
     id: UniqueIdentifier,
-    type: 'container' | 'item'
+    type: 'column' | 'item'
   ) => {
-    if (type === 'container') {
+    if (type === 'column') {
       return containers.find((container) => container.id === id);
     }
     return containers.find((container) =>
@@ -126,9 +125,9 @@ const DnD: FC = () => {
         }
       }
       // handale drop item into container
-      if (activeType === 'item' && overType === 'container') {
+      if (activeType === 'item' && overType === 'column') {
         const activeContainer = findActiveContainer(active.id, 'item');
-        const overContainer = findActiveContainer(over.id, 'container');
+        const overContainer = findActiveContainer(over.id, 'column');
 
         if (!activeContainer || !overContainer) return;
 
@@ -173,7 +172,7 @@ const DnD: FC = () => {
       >
         <div className={style['dnd-box']}>
           {containers.map((container) => (
-            <DnDContainer key={container.id} {...container} />
+            <DnDColumn key={container.id} {...container} />
           ))}
         </div>
         <DragOverlay>
