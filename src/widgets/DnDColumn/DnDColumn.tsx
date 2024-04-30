@@ -7,6 +7,7 @@ import { useDroppable } from '@dnd-kit/core';
 import { SortableContext } from '@dnd-kit/sortable';
 import DnDItem from '../DnD/DnDItem';
 import { useTranslations } from 'next-intl';
+import { Button } from '@/share/UI';
 
 interface IDnDColumn extends TaskContainersType {}
 
@@ -20,7 +21,8 @@ const DnDColumn: FC<IDnDColumn> = ({ id, title, items }) => {
   });
   return (
     <div ref={setNodeRef} className={styles['dnd-column']}>
-      <h2>{t(title as any)}</h2>
+      <h2>{t(title)}</h2>
+      {title === 'queue' && <Button>CreateTask</Button>}
       <SortableContext items={items.map((item) => item.id)}>
         <div className={styles['column-items']}>
           {items.map((item) => (

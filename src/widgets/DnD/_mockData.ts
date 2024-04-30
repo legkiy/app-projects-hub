@@ -2,7 +2,7 @@ import { UniqueIdentifier } from '@dnd-kit/core';
 
 export type TaskContainersType = {
   id: string | UniqueIdentifier;
-  title: string;
+  title: 'queue' | 'inProgress' | 'complete';
   items: TaskType[];
 };
 
@@ -12,6 +12,12 @@ export type TaskType = {
   description?: string;
 };
 
+export const defaultTaskContainers: TaskContainersType[] = [
+  { id: 'queue', title: 'queue', items: [] },
+  { id: 'inProgress', title: 'inProgress', items: [] },
+  { id: 'complete', title: 'complete', items: [] },
+];
+
 export const mockData: TaskContainersType[] = [
   {
     id: 'queue',
@@ -20,7 +26,7 @@ export const mockData: TaskContainersType[] = [
       {
         id: (Date.now() * (Math.random() + 1)).toString(36),
         title: 'сохранение DnD',
-        description:'Сделать сохранение DnD списка в LSs'
+        description: 'Сделать сохранение DnD списка в LSs',
       },
     ],
   },

@@ -1,13 +1,9 @@
 @use 'src/style/colors';
 
-.dnd {
-}
-
 .dnd-box {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  // gap: 10px;
   justify-content: space-between;
 }
 

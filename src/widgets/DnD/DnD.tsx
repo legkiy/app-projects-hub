@@ -17,19 +17,23 @@ import {
 } from '@dnd-kit/core';
 import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import { TaskContainersType, TaskType } from './_mockData';
-import { DnDColumn } from '@/widgets';
+import { CreateTaskForm, DnDColumn } from '@/widgets';
 import DnDItem from './DnDItem';
-import { Button } from '@/share/UI';
 import useLocalStorage from '@/share/hooks/useLocalStorage/useLocalStorage';
+import { defaultTaskContainers } from './_mockData';
+import { cloneDeep } from 'lodash';
 
 const DnD: FC = () => {
   const [containers, setContainers] = useState<TaskContainersType[]>([]);
   const [activeId, setActiveId] = useState<UniqueIdentifier>('');
   const [activeItem, setActiveItem] = useState<TaskType>();
-  const { getLSItem } = useLocalStorage();
+  const { getLSItem, setLSItem } = useLocalStorage();
 
   useEffect(() => {
-    setContainers(JSON.parse(localStorage?.getItem('tasks') || '[]'));
+    // const loadTasks: [] = JSON.parse(localStorage?.getItem('tasks') || '[]');
+    const loadTasks = getLSItem('tasks');
+
+    setContainers(loadTasks ? loadTasks : defaultTaskContainers);
   }, []);
 
   const sensors = useSensors(
@@ -157,11 +161,21 @@ const DnD: FC = () => {
   };
 
   const handaleOnDragEnd = (event: DragEndEvent) => {
-    localStorage.setItem('tasks', JSON.stringify(containers));
+    setLSItem('tasks', containers);
+  };
+
+  const onCreateTask = (data: TaskType) => {
+    const newContainers = [...containers];
+    newContainers[0].items.unshift(data);
+
+    setContainers(newContainers);
+    setLSItem('tasks', newContainers);
   };
 
   return (
-    <div className={style.dnd}>
+    <div>
+      <CreateTaskForm onCreateTask={onCreateTask} />
+
       <DndContext
         id="dnd-context"
         sensors={sensors}

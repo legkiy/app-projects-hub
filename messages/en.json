@@ -1,7 +1,9 @@
 {
   "hello": "hello",
-  "taskBoard_page":{
-    "queue":"Queue",
+  "title": "Title",
+  "description": "Description",
+  "taskBoard_page": {
+    "queue": "Queue",
     "inProgress": "In progress",
     "complete": "Complete"
   }

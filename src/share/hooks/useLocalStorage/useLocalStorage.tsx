@@ -4,10 +4,14 @@ const useLocalStorage = () => {
     if (lsItem) {
       return JSON.parse(lsItem);
     } else {
-      throw `LocalStorage not found item: ${name}`;
+      console.log(`LocalStorage not found item: ${name}`);
     }
   };
 
-  return { getLSItem };
+  const setLSItem = (name: string, item: any) => {
+    localStorage.setItem(name, JSON.stringify(item));
+  };
+
+  return { getLSItem, setLSItem };
 };
 export default useLocalStorage;

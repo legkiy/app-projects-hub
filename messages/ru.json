@@ -1,5 +1,7 @@
 {
   "hello": "Привет",
+  "title": "Заголовок",
+  "description": "Описание",
   "taskBoard_page": {
     "queue": "Очередь",
     "inProgress": "В процессе",
