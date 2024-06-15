@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl';
 import { FC } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import * as zod from 'zod';
-import { TaskType } from '../DnD/_mockData';
+import { TaskType } from '../../widgets/DnD/_mockData';
 
 const createTaskFormSchema = zod.object({
   title: zod.string().min(1, 'fill the field'),

@@ -21,19 +21,20 @@ import { CreateTaskForm, DnDColumn } from '@/widgets';
 import DnDItem from './DnDItem';
 import useLocalStorage from '@/share/hooks/useLocalStorage/useLocalStorage';
 import { defaultTaskContainers } from './_mockData';
-import { cloneDeep } from 'lodash';
 
 const DnD: FC = () => {
+  const [openCreateTask, setOpenCreateTask] = useState(false);
+
   const [containers, setContainers] = useState<TaskContainersType[]>([]);
   const [activeId, setActiveId] = useState<UniqueIdentifier>('');
   const [activeItem, setActiveItem] = useState<TaskType>();
   const { getLSItem, setLSItem } = useLocalStorage();
 
   useEffect(() => {
-    // const loadTasks: [] = JSON.parse(localStorage?.getItem('tasks') || '[]');
     const loadTasks = getLSItem('tasks');
 
     setContainers(loadTasks ? loadTasks : defaultTaskContainers);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const sensors = useSensors(
@@ -174,7 +175,7 @@ const DnD: FC = () => {
 
   return (
     <div>
-      <CreateTaskForm onCreateTask={onCreateTask} />
+      {/* <CreateTaskForm onCreateTask={onCreateTask} /> */}
 
       <DndContext
         id="dnd-context"
@@ -186,7 +187,13 @@ const DnD: FC = () => {
       >
         <div className={style['dnd-box']}>
           {containers.map((container) => (
-            <DnDColumn key={container.id} {...container} />
+            <DnDColumn
+              key={container.id}
+              {...container}
+              onOpenCreateTask={() => setOpenCreateTask((prev) => !prev)}
+              openCreateTask={openCreateTask}
+              onCreateTask={onCreateTask}
+            />
           ))}
         </div>
         <DragOverlay>

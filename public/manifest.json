@@ -1,0 +1,19 @@
+{
+  "theme_color": "#fff",
+  "background_color": "#fff",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "name": "by Legkiy",
+  "short_name": "Legkiy",
+  "icons": [
+    {
+      "src": "icon192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon512.png",
+      "sizes": "512x512"
+    }
+  ]
+}

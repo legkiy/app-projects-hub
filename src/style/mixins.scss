@@ -5,3 +5,7 @@
     #{$property}: $dark-theme;
   }
 }
+
+@mixin transition($targets: all, $time: 0.2s) {
+  transition: $targets $time ease-in-out;
+}

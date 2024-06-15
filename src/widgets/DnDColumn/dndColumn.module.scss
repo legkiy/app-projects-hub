@@ -7,6 +7,11 @@
   gap: 10px;
   width: 30%;
 }
+.title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
 
 .column-items {
   display: flex;

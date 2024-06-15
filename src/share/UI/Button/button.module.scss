@@ -1,0 +1,18 @@
+@use '/src/style/colors.scss';
+@use '/src/style/vars.scss';
+@use '/src/style/mixins.scss';
+
+.button {
+  outline: none;
+  background-color: colors.$lightBlack;
+  border: 1px solid colors.$white;
+  border-radius: vars.$radiusBase;
+  padding: 10px 15px;
+  cursor: pointer;
+  @include mixins.transition();
+
+  &:active,
+  &:hover {
+    background-color: colors.$black;
+  }
+}
